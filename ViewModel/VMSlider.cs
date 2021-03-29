@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimolatorDesktopApp_1.Model
+namespace SimolatorDesktopApp_1.ViewModel
 {
-    class UploadCsvFile : IuploadFile
+    class VMSlider
     {
-        public void ReadFile(string path)
+        
+
+        public void play()
         {
 
         }

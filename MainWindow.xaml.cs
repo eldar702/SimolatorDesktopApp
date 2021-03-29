@@ -46,6 +46,7 @@ namespace SimolatorDesktopApp_1
             if (readGuide && e.Data.GetDataPresent(System.Windows.DataFormats.FileDrop))
             {
                 string[] filePath = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+                Console.WriteLine(filePath[0]);
                 string fileName = Path.GetFileName(filePath[0]);
                 string tempFileName = fileName;
                 int i = tempFileName.LastIndexOf('.');
@@ -98,6 +99,8 @@ namespace SimolatorDesktopApp_1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
         }
+
+
 
         private void ConnectControl_Loaded_2(object sender, RoutedEventArgs e)
         {

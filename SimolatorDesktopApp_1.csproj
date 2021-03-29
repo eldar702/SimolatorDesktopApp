@@ -106,12 +106,16 @@
     <Compile Include="Model\SimulatorModel.cs" />
     <Compile Include="Model\UploadCsvFile.cs" />
     <Compile Include="ViewModel\VMConnectControl.cs" />
+    <Compile Include="ViewModel\VMSlider.cs" />
     <Compile Include="ViewModel\VMuploadCsv.cs" />
     <Compile Include="View\controls\ConnectControl.xaml.cs">
       <DependentUpon>ConnectControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\controls\DashBoardFlight.xaml.cs">
       <DependentUpon>DashBoardFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\controls\Slider.xaml.cs">
+      <DependentUpon>Slider.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\controls\DashBoardFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\controls\Slider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

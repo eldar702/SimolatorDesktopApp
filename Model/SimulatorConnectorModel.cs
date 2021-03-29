@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -13,22 +14,42 @@ namespace SimolatorDesktopApp_1.Model
         // private static readonly Mutex mut = new Mutex();
         // public int conectionAttempts;
         TcpClient aClient;
-        public bool isConnected = false;
+        private bool isConnected = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsConnected
+        {
+            get { return isConnected; }
+            set
+            {
+                isConnected = value;
+                INotifyPropertyChanged("IsConnected");
+            }
+        }
+
+        public void INotifyPropertyChanged(string propName)
+        {
+            if(this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
 
         public void Connect(string ip, int port)
         {
             aClient = new TcpClient(ip, port);
-            isConnected = true;
-            SimulatorModel simulatorModel = new SimulatorModel(this);
-            simulatorModel.startSimulator();
+            IsConnected = true; // set property connect
+           // SimulatorModel simulatorModel = new SimulatorModel(this);
+           // simulatorModel.startSimulator();
         }
 
         public void Disconnect()
         {
-            if (isConnected)
+            if (IsConnected)
             {
                 aClient.Close();
-                isConnected = false;
+                IsConnected = false;
             }
         }
 
