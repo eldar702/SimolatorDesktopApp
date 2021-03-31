@@ -26,7 +26,8 @@ namespace SimolatorDesktopApp_1.Model
                 string[] lines = iuploadFile.ReadFile(path);
                 int numLines = lines.Length;
                 int i = 0;
-                while (i < numLines && _simulatorConnector.isConnected)
+                //while (i < numLines && _simulatorConnector.isConnected)
+                while (i < numLines)
                 {
                     Console.WriteLine(lines[i]);
                     _simulatorConnector.Write(lines[i]);

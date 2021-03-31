@@ -28,22 +28,24 @@ namespace SimolatorDesktopApp_1.View.controls
         public ConnectControl()
         {
             InitializeComponent();
-            _vmConnectControl = new VMConnectControl(new SimulatorConnectorModel());
+            // _vmConnectControl = new VMConnectControl(new SimulatorConnectorModel());
+            _vmConnectControl = new VMConnectControl((Application.Current as App)._simultorConnectorModel);
             DataContext = _vmConnectControl;
         }
 
-        private void connectDisplayStatus(string statusText, bool isConnected)
+        private void connectDisplayStatus()
         {
-            this.StatusConnectTextBlock.Visibility = Visibility.Visible; // change blockText to visiible
-            this.StatusConnectTextBlock.Text = "Status: " + statusText;
-            if (isConnected)
+            if (_vmConnectControl.VM_IsConnected) // check if connected
             {
+                this.StatusConnectTextBlock.Text = "Status: " + connected;
                 this.StatusConnectTextBlock.Foreground = Brushes.LightGreen;
             }
             else
             {
+                this.StatusConnectTextBlock.Text = "Status: " + disconnected;
                 this.StatusConnectTextBlock.Foreground = Brushes.Red;
             }
+            this.StatusConnectTextBlock.Visibility = Visibility.Visible; // change blockText to visiible
         }
 
         /// <summary>
@@ -56,11 +58,37 @@ namespace SimolatorDesktopApp_1.View.controls
             try
             {
                 _vmConnectControl.VMConnect(ipContextTextBox.Text, Int32.Parse(portContextTextBox.Text));
-                this.connectDisplayStatus(connected, true); // connect succsess
+                ConnectButton.IsEnabled = false;
+                ConnectButton.Visibility = Visibility.Collapsed;
+                DisconnectButton.IsEnabled = true;
+                DisconnectButton.Visibility = Visibility.Visible;
+                this.connectDisplayStatus(); // connect succsess
             }
             catch(Exception _exception)
             {
-                this.connectDisplayStatus(disconnected, false); // connect failed
+                this.connectDisplayStatus(); // connect failed
+            }
+        }
+
+        /// <summary>
+        /// Connect button press.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPressedDisconnect(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _vmConnectControl.VMDisconnect();
+                DisconnectButton.IsEnabled = false;
+                DisconnectButton.Visibility = Visibility.Collapsed;
+                ConnectButton.IsEnabled = true;
+                ConnectButton.Visibility = Visibility.Visible;
+                this.connectDisplayStatus(); // connect succsess
+            }
+            catch (Exception _exception)
+            {
+                this.connectDisplayStatus(); // connect failed
             }
         }
     }

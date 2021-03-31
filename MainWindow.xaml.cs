@@ -33,19 +33,15 @@ namespace SimolatorDesktopApp_1
         public MainWindow()
         {
             InitializeComponent();
-            /*
-            SimulatorConnector simConnector = new SimulatorConnector();
-            SimulatorModel simulatorModel = new SimulatorModel(simConnector);
-            //simConnector.Connect("127.0.0.1", 5400);
-            //simulatorModel.startSimulator();
-            */
         }
 
+        /*
         private void CsvDropStackPanel_Drop(object sender, DragEventArgs e)
         {
             if (readGuide && e.Data.GetDataPresent(System.Windows.DataFormats.FileDrop))
             {
                 string[] filePath = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+                Console.WriteLine(filePath[0]);
                 string fileName = Path.GetFileName(filePath[0]);
                 string tempFileName = fileName;
                 int i = tempFileName.LastIndexOf('.');
@@ -61,6 +57,7 @@ namespace SimolatorDesktopApp_1
                 }
             }
         }
+        */
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -98,6 +95,8 @@ namespace SimolatorDesktopApp_1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
         }
+
+
 
         private void ConnectControl_Loaded_2(object sender, RoutedEventArgs e)
         {
