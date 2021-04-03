@@ -16,14 +16,17 @@ using System.Windows.Shapes;
 
 namespace SimolatorDesktopApp_1.View.controls
 {
-    public partial class DashBoardFlight : UserControl
+
+    public partial class JoystickDashBoard : UserControl
     {
-        private VMDashBoard _vmDashBoard;
-        public DashBoardFlight()
+        private VMJoystickDashBoard _vmJoystickDashBoard;
+
+        public JoystickDashBoard()
         {
             InitializeComponent();
-            _vmDashBoard = new VMDashBoard((Application.Current as App)._dashBoardModel);
-            DataContext = _vmDashBoard;
+         
+            _vmJoystickDashBoard = new VMJoystickDashBoard((Application.Current as App)._joystickDashBoardModel);
+            DataContext = _vmJoystickDashBoard;
         }
     }
 }

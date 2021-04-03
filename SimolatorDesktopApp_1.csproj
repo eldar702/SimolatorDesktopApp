@@ -100,13 +100,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DashBoardModel.cs" />
     <Compile Include="Model\ISimulatorConnector.cs" />
     <Compile Include="Model\IuploadFile.cs" />
+    <Compile Include="Model\JoystickDashBoardModel.cs" />
+    <Compile Include="Model\JoystickModel.cs" />
     <Compile Include="Model\SimulatorConnectorModel.cs" />
     <Compile Include="Model\SimulatorModel.cs" />
     <Compile Include="Model\SliderModel.cs" />
     <Compile Include="Model\UploadCsvFile.cs" />
     <Compile Include="ViewModel\VMConnectControl.cs" />
+    <Compile Include="ViewModel\VMDashBoard.cs" />
+    <Compile Include="ViewModel\VMJoystick.cs" />
+    <Compile Include="ViewModel\VMJoystickDashBoard.cs" />
     <Compile Include="ViewModel\VMSlider.cs" />
     <Compile Include="ViewModel\VMuploadCsv.cs" />
     <Compile Include="View\controls\ConnectControl.xaml.cs">
@@ -114,6 +120,12 @@
     </Compile>
     <Compile Include="View\controls\DashBoardFlight.xaml.cs">
       <DependentUpon>DashBoardFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\controls\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\controls\JoystickDashBoard.xaml.cs">
+      <DependentUpon>JoystickDashBoard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\controls\Slider.xaml.cs">
       <DependentUpon>Slider.xaml</DependentUpon>
@@ -135,6 +147,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\controls\DashBoardFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\controls\Joystick.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\controls\JoystickDashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

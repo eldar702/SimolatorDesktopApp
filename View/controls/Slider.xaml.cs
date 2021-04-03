@@ -95,8 +95,14 @@ namespace SimolatorDesktopApp_1.View.controls
             
         }
 
+        void timer_Tick(object sender, EventArgs e)
+        {
+            _timeTextBox.Content = DateTime.Now.ToLongTimeString();
+        }
+
         private void LeftJumpButton(object sender, RoutedEventArgs e)
         {
+            _timeTextBox.Content = DateTime.Now.ToLongTimeString() + "5";
             _VMSlider.VMupdateIndexSlider(_VMSlider.VM_IndexLine - 50);
         }
 
@@ -111,4 +117,4 @@ namespace SimolatorDesktopApp_1.View.controls
         }
         
     }
-    }
+}

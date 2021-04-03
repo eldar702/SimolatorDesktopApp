@@ -10,20 +10,27 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SimolatorDesktopApp_1.View.controls
 {
-    public partial class DashBoardFlight : UserControl
+    public partial class Joystick : UserControl
     {
-        private VMDashBoard _vmDashBoard;
-        public DashBoardFlight()
+        private VMJoystick _vmJoysick;
+
+        public Joystick()
         {
             InitializeComponent();
-            _vmDashBoard = new VMDashBoard((Application.Current as App)._dashBoardModel);
-            DataContext = _vmDashBoard;
+            _vmJoysick = new VMJoystick((Application.Current as App)._joystickModel);
+            DataContext = _vmJoysick;
+        }
+
+        public void location(double x, double y)
+        {
+            Point.Margin = new Thickness(x, y, 0, 0);
         }
     }
 }

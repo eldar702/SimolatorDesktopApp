@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SimolatorDesktopApp_1.Model
 {
@@ -21,9 +22,19 @@ namespace SimolatorDesktopApp_1.Model
         private double _speed = 1.0;
         private Thread t;
         private ManualResetEvent _manualResetEvent = new ManualResetEvent(true);
-
+        private DashBoardModel _dashBoardModel;
+        private JoystickModel _joystickModel;
+        private JoystickDashBoardModel _joystickDashBoardModel;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /* Constructors: */
+        public SliderModel(SimulatorConnectorModel simulatorConnectorModel)
+        {
+            _simulatorConnectorModel = simulatorConnectorModel;
+            _dashBoardModel = (Application.Current as App)._dashBoardModel;
+            _joystickModel = (Application.Current as App)._joystickModel;
+            _joystickDashBoardModel = (Application.Current as App)._joystickDashBoardModel;
+        }
         public int IndexLine
         {
             get
@@ -32,12 +43,16 @@ namespace SimolatorDesktopApp_1.Model
             }
             set
             {
-                if (value > _maxLine)
-                    _indexLine = _maxLine;
+                if (value >= _maxLine)
+                    _indexLine = _maxLine - 1;
                 else if (value < 0)
                     _indexLine = 0;
                 else
                     _indexLine = value;
+                string[] commands = _linesArray[_indexLine].Split(',');
+                _dashBoardModel.updateValues(commands);
+                _joystickModel.updateValues(commands);
+                _joystickDashBoardModel.updateValues(commands);
                 INotifyPropertyChanged("IndexLine");
             }
         }
@@ -76,11 +91,6 @@ namespace SimolatorDesktopApp_1.Model
             }
         }
 
-        public SliderModel(SimulatorConnectorModel simulatorConnectorModel)
-        {
-            _simulatorConnectorModel = simulatorConnectorModel;
-        }
-
         public void stop()
         {
             stopFlag = true;
@@ -109,10 +119,10 @@ namespace SimolatorDesktopApp_1.Model
                     stopFlag = false;
                     while (_simulatorConnectorModel.IsConnected && (IndexLine < _maxLine) && !stopFlag)
                     {
-                        Console.WriteLine(_linesArray[IndexLine]);
+                        //Console.WriteLine(_linesArray[IndexLine]);
                         _simulatorConnectorModel.Write(_linesArray[IndexLine]);
                         int speedRate =(int)(100 / _speed);
-                        Console.WriteLine(_speed);
+                        //Console.WriteLine(_speed);
                         Thread.Sleep(speedRate);
                         IndexLine++;
                         _manualResetEvent.WaitOne(Timeout.Infinite);

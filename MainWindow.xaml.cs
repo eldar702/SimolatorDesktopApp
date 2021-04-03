@@ -61,9 +61,9 @@ namespace SimolatorDesktopApp_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            firstButton.Background = Brushes.LimeGreen;
-            firstButton.Content = "Do it now. before loading the csv file";
-            firstButton.FontSize = 7;
+            //firstButton.Background = Brushes.LimeGreen;
+            //firstButton.Content = "Do it now. before loading the csv file";
+            //firstButton.FontSize = 7;
             //Console.WriteLine("clicked");
             readGuide = true;
             Form form = new Form();
@@ -104,6 +104,21 @@ namespace SimolatorDesktopApp_1
         }
 
         private void DashBoardFlight_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void JoystickFlight_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MediaElement_MediaEnded_1(object sender, RoutedEventArgs e)
         {
 
         }
